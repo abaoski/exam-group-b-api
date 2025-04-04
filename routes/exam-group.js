@@ -9,7 +9,18 @@ router.get('/', (req, res) => {
 
 module.exports = router;
 
-// GET /exam-group/exams - Get all exams
+// GET
 router.get('/exams', (req, res) => {
   res.json(exams);
+});
+
+//POST
+router.post('/exams', express.json(), (req, res) => {
+  const newExam = {
+    id: exams.length + 1,
+    name: req.body.name,
+    date: req.body.date
+  };
+  exams.push(newExam);
+  res.status(201).json(newExam);
 });
